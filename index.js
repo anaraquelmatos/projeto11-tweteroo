@@ -23,12 +23,18 @@ app.post("/tweets", (req, res) => {
     const { username, tweet } = req.body;
     if (username !== null && tweet !== null) {
         const infos = usuario.find(elemento => elemento.username === username);
-        tweets.push({ username: username, avatar: infos.avatar, tweet: tweet});
+        tweets.push({ username: username, avatar: infos.avatar, tweet: tweet });
         res.status(200).send("OK");
         console.log(tweets);
     } else {
         res.send("Confira as informações colocadas!");
     }
+})
+
+app.get("/tweets", (req, res) => {
+    const ultimos = tweets.slice(-10);
+    res.send(ultimos);
+    console.log(tweets);
 })
 
 app.listen(5000);
