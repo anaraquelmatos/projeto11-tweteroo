@@ -13,7 +13,6 @@ app.post("/sign-up", (req, res) => {
     if (username !== null && avatar !== null) {
         usuario.push({ username: username, avatar: avatar });
         res.status(200).send("OK");
-        console.log(usuario);
     } else {
         res.send("Confira as informações repassadas!");
     }
@@ -25,16 +24,14 @@ app.post("/tweets", (req, res) => {
         const infos = usuario.find(elemento => elemento.username === username);
         tweets.push({ username: username, avatar: infos.avatar, tweet: tweet });
         res.status(200).send("OK");
-        console.log(tweets);
     } else {
         res.send("Confira as informações colocadas!");
     }
 })
 
 app.get("/tweets", (req, res) => {
-    const ultimos = tweets.slice(-10);
-    res.send(ultimos);
-    console.log(tweets);
+    const ultimosTweets = tweets.slice(-10);
+    res.send(ultimosTweets);
 })
 
 app.listen(5000);
