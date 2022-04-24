@@ -10,23 +10,15 @@ const tweets = [];
 
 app.post("/sign-up", (req, res) => {
     const { username, avatar } = req.body;
-    if (username !== null && avatar !== null) {
-        usuario.push({ username: username, avatar: avatar });
-        res.status(200).send("OK");
-    } else {
-        res.send("Confira as informações repassadas!");
-    }
+    usuario.push({ username: username, avatar: avatar });
+    res.status(200).send("OK");
 })
 
 app.post("/tweets", (req, res) => {
     const { username, tweet } = req.body;
-    if (username !== null && tweet !== null) {
-        const infos = usuario.find(elemento => elemento.username === username);
-        tweets.push({ username: username, avatar: infos.avatar, tweet: tweet });
-        res.status(200).send("OK");
-    } else {
-        res.send("Confira as informações colocadas!");
-    }
+    const infos = usuario.find(elemento => elemento.username === username);
+    tweets.push({ username: username, avatar: infos.avatar, tweet: tweet });
+    res.status(200).send("OK");
 })
 
 app.get("/tweets", (req, res) => {
